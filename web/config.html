@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dota 2 timer</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Style -->
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!-- Checkbox -->
+    <link href="css/bootstrap-switch.min.css" rel="stylesheet">
+    <!-- My style -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="page-header"><h1 class="text-center">DOTA2Timer Settings</h1></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-xs-7">
+          <label for="alert53">Pulse on "53</label>
+          <p class="desc">Camp creep stacking mark</p>
+          <p class="desc alternative">NO STACK GG FF PLZ</p>
+        </div>
+        <div class="col-md-5 col-xs-5 checkbox">
+          <input type="checkbox" id="alert53" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-xs-7">
+          <label for="alert53">Double pulse on 03:00</label>
+          <p class="desc">Courier upgrade available</p>
+          <p class="desc alternative">UPGRD COURIER NOOB CM</p>
+        </div>
+        <div class="col-md-5 col-xs-5 checkbox">
+          <input type="checkbox" id="alert_courier" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 col-xs-1">
+        </div>
+        <div class="col-md-5 col-xs-5">
+          <button class="btn btn-block btn-lg btn-danger" id="cancel">Cancel</button>
+        </div>
+        <div class="col-md-5 col-xs-5" style="text-align: right;">
+          <button class="btn btn-block btn-lg btn-primary" id="save">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch.min.js"></script>
+    <!-- The lulz -->
+    <script src="js/konami.js"></script>
+    
+    <script type="text/javascript">
+      var payload;
+      if (getUrlParameter('data') == null) {
+        payload = {
+          isCancel: false,
+          alert53: false,
+          alert_courier: false
+        };
+      } else {
+        payload = JSON.parse(decodeURIComponent(getUrlParameter('data')));
+      }
+      
+      if (payload.alert53 == null)
+        payload.alert53 = false;
+    
+      // Button initialization.
+      $("#alert53").bootstrapSwitch('state', payload.alert53);
+      $("#alert_courier").bootstrapSwitch('state', payload.alert_courier);
+      
+      // Button bindings.
+      $("#alert53").on('switchChange.bootstrapSwitch', function(event, state) {
+        payload.alert53 = state;
+      });
+      $("#alert_courier").on('switchChange.bootstrapSwitch', function(event, state) {
+        payload.alert_courier = state;
+      });
+    
+      $("#cancel").click(function() {
+        payload.isCancel = true;
+        window.location.href = "pebblejs://close#" + JSON.stringify(payload);
+      });
+      
+      $("#save").click(function () {
+        payload.isCancel = false;
+        window.location.href = "pebblejs://close#" + JSON.stringify(payload);
+      });
+      
+      var easter_egg = new Konami(function() { $(".alternative").show(); });
+      
+      function getUrlParameter(sParam) {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) 
+          {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) 
+              {
+                  return sParameterName[1];
+              }
+          }
+      }
+    </script>
+  </body>
+</html>

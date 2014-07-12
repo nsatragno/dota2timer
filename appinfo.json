@@ -1,0 +1,55 @@
+{
+  "uuid": "cf6dfdc6-4285-4ec8-aeac-55f373354143",
+  "shortName": "Dota2Timer",
+  "longName": "Dota2timer",
+  "companyName": "Satragno Software",
+  "versionCode": 1,
+  "versionLabel": "0.0.1",
+  "capabilities": [ "configurable" ],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "isCancel": 0,
+    "alert53": 1,
+    "alert_courier": 2
+  },
+  "resources": {
+    "media": [{
+      "type": "png",
+      "name": "IMAGE_BUTTON_PAUSE",
+      "file": "images/pause.png"
+      },
+      {
+      "type": "png",
+      "name": "IMAGE_BUTTON_ROSHAN",
+      "file": "images/roshan.png"
+      },
+      {
+      "type": "png",
+      "name": "IMAGE_BUTTON_STOP",
+      "file": "images/stop.png"
+      },
+      {
+      "type": "png",
+      "name": "IMAGE_BUTTON_START",
+      "file": "images/start.png"
+      },
+      {
+      "type": "png",
+      "name": "IMAGE_BUTTON_ADD",
+      "file": "images/add.png"
+      },
+      {
+      "type": "png",
+      "name": "IMAGE_BUTTON_SUBSTRACT",
+      "file": "images/substract.png"
+      },
+      {
+      "type": "png",
+      "name": "IMAGE_DOTA_LOGO",
+      "file": "images/dota2logo.png",
+      "menuIcon": true
+      }]
+  }
+}
